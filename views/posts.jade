@@ -1,8 +1,14 @@
 extends layout
 
 block content
-  each post, index in posts
-    div
-      h2
-        a(href="/post")= post.title
-  
+  each group in postsByMonth
+    div(class='month-group')
+      h1= group._id
+      ul
+        each post in group.posts
+          li
+            - var url = "/post/" + post.title
+            a(href="#{url}", class='title')= post.title
+            br
+            a(href="#{url}", class='url')= url
+
