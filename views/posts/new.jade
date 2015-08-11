@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1 Create a new post
+
+  form(name="new-post", method="post")
+    div.input
+      label(for="title") Title
+      input(type="text", name="title")
+    div.input
+      label(for="body") Body
+      textarea(name="body", cols="40", rows="5")
+    div.input
+      label(for="author") Author
+      input(type="text", name="author")
+    div.input
+      label(for="published") Published?
+      input(type="checkbox", name="published", checked)
+    div.actions
+      input(type="submit", value="create")
