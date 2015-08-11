@@ -40,3 +40,51 @@ a {
   margin-top: 2.5em;
   position: relative;
 }
+.new-post h1 {
+  color: #00b7ff;
+}
+.input label {
+  display: block;
+  color: #00b7ff;
+}
+.checkbox label {
+  display: inline-block;
+  margin-right: 1em;
+}
+.input input,
+.input textarea {
+  padding: 0.5em 0.7em;
+  margin-bottom: 1em;
+  font-size: 70%;
+}
+.input input {
+  width: 70%;
+}
+.input textarea {
+  width: 90%;
+}
+.button {
+  border: 1px solid transparent;
+  border-width: 0 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  zoom: 1;
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 30px;
+  overflow: hidden;
+  padding: 0 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+.button.orange:hover {
+  background: #f7b837;
+}
+.button.orange {
+  background: #f8c150;
+  color: #963;
+}

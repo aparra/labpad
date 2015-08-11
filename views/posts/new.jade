@@ -1,20 +1,21 @@
 extends ../layout
 
 block content
-  h1 Create a new post
+  section.new-post
+    h1 Create a new post
 
-  form(name="new-post", method="post")
-    div.input
-      label(for="title") Title
-      input(type="text", name="title")
-    div.input
-      label(for="body") Body
-      textarea(name="body", cols="40", rows="5")
-    div.input
-      label(for="author") Author
-      input(type="text", name="author")
-    div.input
-      label(for="published") Published?
-      input(type="checkbox", name="published", checked)
-    div.actions
-      input(type="submit", value="create")
+    form(name="new-post", method="post")
+      div.input
+        label(for="title") Title
+        input(type="text", name="title")
+      div.input
+        label(for="body") Body
+        textarea(name="body", cols="90", rows="20")
+      div.input
+        label(for="author") Author
+        input(type="text", name="author")
+      div.input.checkbox
+        label(for="published") Published?
+        input(type="checkbox", name="published", checked)
+      div
+        input(type="submit", value="Create", class="button orange")
