@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  section(class='index')
+    each group in postsByMonth
+      div(class='month-group')
+        h1= group._id
+        ul
+          each post in group.posts
+            li
+              - var url = "/post/" + post.title
+              a(href="#{url}", class='title')= post.title
+              br
+              a(href="#{url}", class='url')= url
+

@@ -12,13 +12,13 @@ router.get('/', function(req, res, next) {
            posts: { "$push": "$$ROOT" } }
         }
       ], function(error, posts) {
-        res.render('posts', { 'postsByMonth': posts });
+        res.render('posts/list', { 'postsByMonth': posts });
       });
   });
 });
 
 router.get('/post', function(req, res, next) {
-  res.render('posts/new.jade');
+  res.render('posts/new');
 });
 
 router.post('/post', function(req, res, next) {
