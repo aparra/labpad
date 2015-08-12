@@ -1,6 +1,10 @@
 extends ../layout
 
 block content
+  - var urlFor = function(title) {  
+  -   return /post/ + title.replace(/\s+/g, '_').toLowerCase();
+  - }
+
   section(class='index')
     each group in postsByMonth
       div(class='month-group')
@@ -8,7 +12,7 @@ block content
         ul
           each post in group.posts
             li
-              - var url = "/post/" + post.title
+              - var url = urlFor(post.title)
               a(href="#{url}", class='title')= post.title
               br
               a(href="#{url}", class='url')= url

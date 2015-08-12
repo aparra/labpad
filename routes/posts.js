@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
            posts: { "$push": "$$ROOT" } }
         }
       ], function(error, posts) {
-        res.render('posts/list', { 'postsByMonth': posts });
+        db.close();
+        res.render('posts/list', {'postsByMonth': posts});
       });
   });
 });
@@ -34,6 +35,16 @@ router.post('/post', function(req, res, next) {
     db.collection('posts').insert(post, function(error, data) {
       db.close();
       res.redirect('/')
+    });
+  });
+});
+
+router.get('/post/:title', function(req, res, next) {
+  var title = req.params.title.replace(/_/g, ' ');
+  req.execute(function(db) {
+    db.collection('posts').findOne({title: {$regex: new RegExp(title, 'i')}}, function(error, post) {
+      db.close();
+      res.render('posts/show', {'post': post});
     });
   });
 });

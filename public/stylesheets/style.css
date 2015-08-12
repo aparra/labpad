@@ -88,3 +88,9 @@ a {
   background: #f8c150;
   color: #963;
 }
+article h1 {
+  color: #00b7ff;
+}
+article p {
+  color: #fff;
+}
