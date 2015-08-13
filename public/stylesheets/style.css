@@ -112,3 +112,11 @@ article p {
   white-space: nowrap;
   margin-right: 6px;
 }
+.tip {
+  color: #898989;
+  display: inline-block;
+  font-size: 0.65em;
+  margin-left: 10px;
+  white-space: nowrap;
+  max-width: 300px;
+}

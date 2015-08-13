@@ -28,7 +28,8 @@ router.post('/post', function(req, res, next) {
     body: req.body.body,
     author: req.body.author,
     date: new Date(),
-    published: req.body.published === 'on'
+    published: req.body.published === 'on',
+    tags: req.body.tags.split(';')
   };
   
   req.execute(function(db) {

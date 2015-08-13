@@ -17,5 +17,9 @@ block content
       div.input.checkbox
         label(for="published") Published?
         input(type="checkbox", name="published", checked)
+      div.input
+        label(for="tags") Tags
+        input(type="text", name="tags")
+        span.tip Use ';' to separate each tag
       div
         input(type="submit", value="Create", class="button orange")
