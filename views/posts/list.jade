@@ -5,9 +5,9 @@ block content
   -   return /post/ + title.replace(/\s+/g, '_').toLowerCase();
   - }
 
-  section(class='index')
+  section.index
     each group in postsByMonth
-      div(class='month-group')
+      div.month-group
         h1= group._id
         ul
           each post in group.posts
@@ -16,4 +16,7 @@ block content
               a(href="#{url}", class='title')= post.title
               br
               a(href="#{url}", class='url')= url
-
+              if post.tags
+                div.tag
+                  each tag in post.tags
+                    span= tag
