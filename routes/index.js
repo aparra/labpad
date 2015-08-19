@@ -1,5 +1,5 @@
-var PostController = require('./posts');
 
 module.exports = exports = function(app, db) {
-  new PostController(app, db);
+  new require('./posts')(app, db);
+  new require('./users')(app, db);
 }

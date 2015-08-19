@@ -2,9 +2,9 @@ var express = require('express'),
     path = require('path'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    MongoClient = require('mongodb').MongoClient; 
+    mongodb = require('mongodb'); 
 
-MongoClient.connect('mongodb://localhost:27017/labpad', function(error, db) {
+mongodb.MongoClient.connect('mongodb://localhost:27017/labpad', function(error, db) {
   if (error) throw error;
 
   var app = express();
