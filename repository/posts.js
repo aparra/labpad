@@ -3,7 +3,7 @@ var Q = require('Q');
 function PostRepository(db) {
   var posts = db.collection('posts');
 
-  this.save = function() {
+  this.create = function(post) {
     var deferred = Q.defer();
 
     posts.create(post, function(error, data) {
