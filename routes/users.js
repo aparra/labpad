@@ -19,7 +19,7 @@ function UserController(router, db) {
 
   router.get('/user', function(req, res, next) {
     res.render('users/new');
-  }):
+  });
 
   router.post('/user', function(req, res, next) {
     users.create(req.body.email, req.body.password).then(function(user) {
