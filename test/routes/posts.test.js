@@ -1,22 +1,27 @@
-var http = require('http'),
+var request = require('superagent'),
+    expect = require('chai').expect,
     route = require('../../routes/posts'),
     MockServer = require('../server');
 
-describe('posts route', function() {
+describe('Route: posts', function() {
 
   before(function(done) {
     new MockServer(route, done);
   });
 
-  describe("test", function() {
-    sleep = require('sleep');	  
-    it('returns something', function(done) {
-      http.get('http://localhost:8082', function(err, res) {
-	console.log(res);
-        done();
-      });
+  it('should GET the homepage', function(done) {
+    request.get('http://localhost:8082').end(function(err, res) {
+      expect(res.status).to.equal(200);
+      done();
     });
   });
 
+  it('should GET the page to create a new post', function(done) {
+    request.get('http://localhost:8082/post').end(function(err, res) {
+      expect(res.status).to.equal(200);
+      expect(res.text).to.have.string('<h1>Create a new post</h1>');
+      done();
+    });
+  });
 });
 
