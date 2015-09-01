@@ -6,6 +6,7 @@ function Fixture() {
   
   this.loadTo = function(db) {
     this.loadFixtures().forEach(function(fixture) {
+      db.collection(fixture.name).drop();
       fixture.collection.forEach(function(data) {
         db.collection(fixture.name).insert(data);
       });
