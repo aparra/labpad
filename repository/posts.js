@@ -6,7 +6,7 @@ function PostRepository(db) {
   this.create = function(post) {
     var deferred = Q.defer();
 
-    posts.create(post, function(error, data) {
+    posts.insert(post, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {

@@ -23,5 +23,21 @@ describe('Route: posts', function() {
       done();
     });
   });
+
+  it('should create a new post', function(done) {
+    request.post('http://localhost:8082/post')
+      .send({
+        title: "My new post",
+        body: "Hello world!",
+        author: "Ander",
+        published: "on",
+        tags: "first; hello"
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('My new post');
+        done();
+      });
+  });
 });
 
