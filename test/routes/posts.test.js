@@ -4,9 +4,15 @@ var request = require('superagent'),
     MockServer = require('../server');
 
 describe('Route: posts', function() {
+  
+  var server = new MockServer();
 
   before(function(done) {
-    new MockServer(route, done);
+    server.start(route, done);
+  });
+
+  after(function() {
+    server.shutdown();
   });
 
   it('should GET the homepage', function(done) {

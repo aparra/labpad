@@ -5,14 +5,12 @@ var express = require('express'),
 
 function App() {
 
-  this.startOnPort = function(port) {
+  this.init = function() {
     var app = express();
     
     this.setupViewEngine(app);
     this.setupUseTools(app);
 
-    app.listen(port);
-    console.log('Express server listening on port ' + port)
     return app;
   }
 
