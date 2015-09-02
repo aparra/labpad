@@ -8,7 +8,8 @@
     "jade": "~1.11.0",
     "stylus": "0.42.3",
     "mongodb": "~2.0.33",
-    "q": "~1.0.0"
+    "q": "~1.0.0",
+    "bcrypt-nodejs": "~0.0.3"
   },
   "devDependencies": {
     "mocha": "~2.2.5",
