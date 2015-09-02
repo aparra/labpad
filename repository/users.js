@@ -34,7 +34,7 @@ function UserRepository(db) {
 
     users.findOne({'_id': email}, validateLogin);
     return deferred.promise;
-  });
+  }
 }
 
 module.exposts = UserRepository;
