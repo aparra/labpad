@@ -52,4 +52,12 @@ describe('Route: users', function() {
         done();
       });
   });
+
+  it('should show the page to create an user', function(done) {
+    request.get('http://localhost:8082/user').end(function(err, res) {
+      expect(res.status).to.equal(200);
+      expect(res.text).to.have.string('<h1>Create a new user</h1>');
+      done();
+    });
+  });
 });

@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  section.new-post
+    h1 Create a new user
+
+    form(name="new-user", method="post")
+      div.input
+        label(for="email") Email
+        input(type="email", name="email")
+      div.input
+        label(for="password") Password
+        input(type="password", name="password")
+      div.input
+        label(for="password") Verify password
+        input(type="password", name="verify")
+      div
+        input(type="submit", value="Create", class="button orange")
