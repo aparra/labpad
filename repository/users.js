@@ -4,13 +4,13 @@ var bcrypt = require('bcrypt-nodejs'),
 function UserRepository(db) {
   var users = db.collection('users');
 
-  this.create = function(email, password) {
+  this.create = function(user) {
     var deferred = Q.defer();
 
     var salt = bcrypt.genSaltSync();
-    var password_hash = bcrypt.hashSync(password, salt);
+    var password_hash = bcrypt.hashSync(user.password, salt);
 
-    users.insert({'_id': email, 'password': password_hash}, function(error, data) {
+    users.insert({'_id': user.email, 'password': password_hash}, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {

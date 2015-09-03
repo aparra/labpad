@@ -30,7 +30,7 @@ describe('Route: users', function() {
 
     request.post('http://localhost:8082/user/login')
       .send({
-        email: "ander.pp@gmail.com",
+        email: "user@fakemail.com",
         password: "123qwe"  
       })
       .end(function(err, res) {
@@ -43,7 +43,7 @@ describe('Route: users', function() {
   it('should not signin using invalid user', function(done) {
     request.post('http://localhost:8082/user/login')
       .send({
-        email: "invalid@gmail.com",
+        email: "invalid@fakemail.com",
         password: "123qwe"  
       })
       .end(function(err, res) {
@@ -60,4 +60,32 @@ describe('Route: users', function() {
       done();
     });
   });
+
+  it('should create a new user', function(done) {
+    request.post('http://localhost:8082/user')
+      .send({
+        email: "new.user@fakemail.com",
+        password: "123qwe",
+        verify: "123qwe"
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('<h1>Sign in to continue to labpad</h1>');
+        done();
+      });
+  });
+
+  it('should not create an user when using invalid information', function(done) {
+    request.post('http://localhost:8082/user')
+      .send({
+        email: "new.user@fakemail.com",
+        password: "123qwe",
+        verify: "wrong_password"
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('Password must match');
+        done();
+      });
+  });  
 });

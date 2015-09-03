@@ -14,5 +14,7 @@ block content
       div.input
         label(for="password") Verify password
         input(type="password", name="verify")
+        if verify_error
+          span.error= verify_error
       div
         input(type="submit", value="Create", class="button orange")
