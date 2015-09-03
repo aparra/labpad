@@ -14,6 +14,9 @@ function UserController(router, db) {
       .then(sessions.startSession)
       .then(function(user) {
         res.redirect('/');
+      })
+      .fail(function(error) {
+        res.render('users/login', {'error': error});
       });
   });
 

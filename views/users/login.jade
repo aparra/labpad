@@ -5,6 +5,8 @@ block content
     h1 Sign in to continue to labpad
 
     form(name="signin", method="post")
+      if error
+        span.error= error.message
       div.input
         label(for="email") Email
         input(type="email", name="email")

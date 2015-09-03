@@ -17,7 +17,6 @@ describe('Route: users', function() {
 
   it('should show the page to signin', function(done) {
     request.get('http://localhost:8082/user/login').end(function(err, res) {
-      console.log(err);
       expect(res.status).to.equal(200);
       expect(res.text).to.have.string('<h1>Sign in to continue to labpad</h1>');
       done();
@@ -37,6 +36,19 @@ describe('Route: users', function() {
       .end(function(err, res) {
         expect(res.status).to.equal(200);
         expect(res.text).to.have.string('{"body":"mock index"}');
+        done();
+      });
+  });
+
+  it('should not signin using invalid user', function(done) {
+    request.post('http://localhost:8082/user/login')
+      .send({
+        email: "invalid@gmail.com",
+        password: "123qwe"  
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('Invalid user and/or password');
         done();
       });
   });
