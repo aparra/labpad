@@ -10,7 +10,7 @@ function UserRepository(db) {
     var salt = bcrypt.genSaltSync();
     var password_hash = bcrypt.hashSync(password, salt);
 
-    users.create({'_id': email, 'password': password_hash}, function(error, data) {
+    users.insert({'_id': email, 'password': password_hash}, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
@@ -21,7 +21,7 @@ function UserRepository(db) {
     return deferred.promise;
   }
 
-  this.login = function(username, password) {
+  this.login = function(email, password) {
     var deferred = Q.defer();
 
     var validateLogin = function(error, user) {
@@ -37,4 +37,4 @@ function UserRepository(db) {
   }
 }
 
-module.exposts = UserRepository;
+module.exports = UserRepository;

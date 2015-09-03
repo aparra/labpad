@@ -11,7 +11,7 @@ function UserController(router, db) {
 
   router.post('/user/login', function(req, res, next) {
     users.login(req.body.email, req.body.password)
-      .then(sessios.startSession)
+      .then(sessions.startSession)
       .then(function(user) {
         res.redirect('/');
       });

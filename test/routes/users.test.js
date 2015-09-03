@@ -23,4 +23,21 @@ describe('Route: users', function() {
       done();
     });
   });
+
+  it('should signin using valid user', function(done) {
+    server.mockGet("/", function(req, res, next) {
+      res.json({body: "mock index"});
+    });
+
+    request.post('http://localhost:8082/user/login')
+      .send({
+        email: "ander.pp@gmail.com",
+        password: "123qwe"  
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('{"body":"mock index"}');
+        done();
+      });
+  });
 });
