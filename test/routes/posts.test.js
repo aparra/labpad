@@ -31,6 +31,7 @@ describe('Route: posts', function() {
   });
 
   it('should show the page to create a new post', function(done) {
+    server.enabledCookie();
     request.get('http://localhost:8082/post').end(function(err, res) {
       expect(res.status).to.equal(200);
       expect(res.text).to.have.string('<h1>Create a new post</h1>');

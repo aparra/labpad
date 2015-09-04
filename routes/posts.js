@@ -1,7 +1,10 @@
-var PostRepository = require('../repository/posts');
+var PostRepository = require('../repository/posts'),
+    SessionHandler = require('./sessions');
 
 function PostController(router, db) {
+  
   var posts = new PostRepository(db);
+  var sessionHandler = new SessionHandler(db);
 
   router.get('/', function(req, res, next) {
     posts.getAllPublisheds().then(function(publicPosts) {
@@ -9,7 +12,7 @@ function PostController(router, db) {
     });
   });
   
-  router.get('/post', function(req, res, next) {
+  router.get('/post', sessionHandler.checkAuth, function(req, res, next) {
     res.render('posts/new');
   });
 

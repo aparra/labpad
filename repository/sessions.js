@@ -7,11 +7,11 @@ function SessionRepository(db) {
   this.startSession = function(user) {
     var deferred = Q.defer();
   
-    var current_date = (new Date()).valueOf().toString();
+    var currentDate = (new Date()).valueOf().toString();
     var random = Math.random().toString();
-    var session_id = crypto.createHash('sha1').update(current_date + random).digest('hex');
+    var sessionId = crypto.createHash('sha1').update(currentDate + random).digest('hex');
 
-    sessions.insert({'_id': session_id, 'email': user.email}, function(error, data) {
+    sessions.insert({'_id': sessionId, 'email': user.email}, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
@@ -20,6 +20,20 @@ function SessionRepository(db) {
     });
 
     return deferred.promise;
+  }
+
+  this.getEmailBy = function(sessionId) {
+    var deferred = Q.defer();
+
+    sessions.findOne({'_id': sessionId}, function(error, session) {
+      if (error || !session.email) {
+        deferred.reject(new Error(error));
+      } else {
+        deferred.resolve(session.email);
+      }
+    });
+
+    return deferred.promise;        
   }
 }
 
