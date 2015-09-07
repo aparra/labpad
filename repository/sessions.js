@@ -1,5 +1,5 @@
 var crypto = require('crypto'),
-    Q = require('Q');
+    Q = require('q');
 
 function SessionRepository(db) {
   var sessions = db.collection("sessions");

@@ -1,4 +1,4 @@
-var Q = require('Q'),
+var Q = require('q'),
     _ = require('underscore'),
     UserRepository = require('../repository/users'),
     SessionRepository = require('../repository/sessions');

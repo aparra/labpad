@@ -1,4 +1,4 @@
-var Q = require('Q');
+var Q = require('q');
 
 function PostRepository(db) {
   var posts = db.collection('posts');
