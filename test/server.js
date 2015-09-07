@@ -29,7 +29,7 @@ function MockServer() {
     });
   }
 
-  this.enabledCookie = function() {
+  this.enabledFakeLogin = function() {
     isCookieEnabled = true;
   }
 

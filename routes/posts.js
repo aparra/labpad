@@ -2,7 +2,7 @@ var PostRepository = require('../repository/posts'),
     SessionHandler = require('./sessions');
 
 function PostController(router, db) {
-  
+
   var posts = new PostRepository(db);
   var sessionHandler = new SessionHandler(db);
 
@@ -11,12 +11,12 @@ function PostController(router, db) {
       res.render('posts/list', {'postsByMonth': publicPosts});
     });
   });
-  
+
   router.get('/post', sessionHandler.checkAuth, function(req, res, next) {
     res.render('posts/new');
   });
 
-  router.post('/post', function(req, res, next) {
+  router.post('/post', sessionHandler.checkAuth, function(req, res, next) {
     posts.create({
       title: req.body.title,
       body: req.body.body,

@@ -25,8 +25,12 @@ function SessionRepository(db) {
   this.getEmailBy = function(sessionId) {
     var deferred = Q.defer();
 
-    sessions.findOne({'_id': sessionId}, function(error, session) {
-      if (error || !session.email) {
+    var orElse = function(value, otherValue) {
+      return value ? value : otherValue;
+    };
+
+    sessions.findOne({'_id': orElse(sessionId, 'undefined')}, function(error, session) {
+      if (error || !session || !session.email) {
         deferred.reject(new Error(error));
       } else {
         deferred.resolve(session.email);

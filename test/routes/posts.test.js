@@ -4,7 +4,8 @@ var request = require('superagent'),
     MockServer = require('../server');
 
 describe('Route: posts', function() {
-  
+  this.timeout(4000);
+
   var server = new MockServer();
 
   before(function(done) {
@@ -31,7 +32,7 @@ describe('Route: posts', function() {
   });
 
   it('should show the page to create a new post', function(done) {
-    server.enabledCookie();
+    server.enabledFakeLogin();
     request.get('http://localhost:8082/post').end(function(err, res) {
       expect(res.status).to.equal(200);
       expect(res.text).to.have.string('<h1>Create a new post</h1>');
@@ -39,7 +40,20 @@ describe('Route: posts', function() {
     });
   });
 
+  it('should not show the page to create a new post when user is not logged', function(done) {
+    server.mockGet("/user/login", function(req, res, next) {
+      res.json({body: "mock login page"});
+    });
+
+    request.get('http://localhost:8082/post').end(function(err, res) {
+      expect(res.status).to.equal(200);
+      expect(res.text).to.have.string('{"body":"mock login page"}');
+      done();
+    });
+  });  
+
   it('should create a new post', function(done) {
+    server.enabledFakeLogin();	  
     request.post('http://localhost:8082/post')
       .send({
         title: "My new post",
@@ -54,5 +68,25 @@ describe('Route: posts', function() {
         done();
       });
   });
+
+  it('should not create a new post when user is not logged', function(done) {
+    server.mockGet("/user/login", function(req, res, next) {
+      res.json({body: "mock login page"});
+    });
+    
+    request.post('http://localhost:8082/post')
+      .send({
+        title: "My new post",
+        body: "Hello world!",
+        author: "Ander",
+        published: "on",
+        tags: "first; hello"
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+        expect(res.text).to.have.string('{"body":"mock login page"}');
+        done();
+      });
+  });  
 });
 
