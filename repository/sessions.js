@@ -11,7 +11,7 @@ function SessionRepository(db) {
     var random = Math.random().toString();
     var sessionId = crypto.createHash('sha1').update(currentDate + random).digest('hex');
 
-    sessions.insert({'_id': sessionId, 'email': user.email}, function(error, data) {
+    sessions.insert({'_id': sessionId, 'email': user._id}, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
