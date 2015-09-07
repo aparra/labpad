@@ -10,7 +10,8 @@
     "mongodb": "~2.0.33",
     "q": "~1.0.0",
     "bcrypt-nodejs": "~0.0.3",
-    "glob": "~5.0.14"
+    "glob": "~5.0.14",
+    "underscore": "~1.8.3"
   },
   "devDependencies": {
     "mocha": "~2.2.5",
