@@ -10,6 +10,7 @@ function PostRepository(db) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
+        console.log("insert " + data);	      
         deferred.resolve(data);
       }
     });

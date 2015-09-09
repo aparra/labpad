@@ -15,6 +15,7 @@ function MockServer() {
       route(app, db);
       server = app.listen(8082);
       
+      console.log("server started and listening on 8082");
       done();
     });
   }

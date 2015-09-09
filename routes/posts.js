@@ -17,6 +17,7 @@ function PostController(router, db) {
   });
 
   router.post('/post', sessionHandler.checkAuth, function(req, res, next) {
+    console.log("creating a post");
     posts.create({
       title: req.body.title,
       body: req.body.body,
@@ -25,6 +26,7 @@ function PostController(router, db) {
       published: req.body.published === 'on',
       tags: req.body.tags.split(';')
     }).then(function() {
+      console.log("redirecting to home");	    
       res.redirect('/')
     });
   });
