@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs'),
-    Q = require('Q');
+    Q = require('q');
 
 function UserRepository(db) {
   var users = db.collection('users');
