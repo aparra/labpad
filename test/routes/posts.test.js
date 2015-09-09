@@ -4,7 +4,6 @@ var request = require('superagent'),
     MockServer = require('../server');
 
 describe('Route: posts', function() {
-  this.timeout(4000);
 
   var server = new MockServer();
 
