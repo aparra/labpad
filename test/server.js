@@ -9,14 +9,16 @@ function MockServer() {
     var that = this;
     mongo.MongoClient.connect('mongodb://localhost:27017/labpad-test', function(err, db) {
       app = new Application().init();
-      new Fixture().loadTo(db);
-      
+
       that.requestCookie(app);
       route(app, db);
       server = app.listen(8082);
-      
-      console.log("server started and listening on 8082");
-      done();
+
+      db.dropDatabase();
+      new Fixture(db).load().then(function() {
+        console.log("server started and listening on 8082");
+        done();	      
+      });
     });
   }
 
