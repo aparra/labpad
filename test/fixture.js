@@ -8,7 +8,10 @@ function Fixture() {
     this.loadFixtures().forEach(function(fixture) {
       db.collection(fixture.name).drop();
       fixture.collection.forEach(function(data) {
-        db.collection(fixture.name).insert(data);
+        db.collection(fixture.name).insert(data, function(error) {
+          if (error) throw error;
+          console.log("Fixture loaded " + data);
+	});
       });
     });
   }

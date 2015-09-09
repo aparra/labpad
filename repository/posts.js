@@ -29,6 +29,7 @@ function PostRepository(db) {
         if (error) {
           deferred.reject(new Error(error));
         } else {
+          console.log(posts);	  	
           deferred.resolve(posts);
         }
     });
@@ -43,6 +44,7 @@ function PostRepository(db) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
+        console.log(post);
         deferred.resolve(post);
       }
     });
