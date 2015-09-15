@@ -8,6 +8,7 @@ function PostController(router, db) {
 
   router.get('/', function(req, res, next) {
     posts.getAllPublisheds().then(function(publicPosts) {
+      console.log("public pots: " + publicPosts);
       res.render('posts/list', {'postsByMonth': publicPosts});
     });
   });
