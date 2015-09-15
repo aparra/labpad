@@ -17,7 +17,7 @@ describe('Route: posts', function() {
 
   it('should GET the homepage', function(done) {
     console.log("start homepage test");
-    request.get('http://localhost:8082/').end(function(err, res) {
+    request.get('http://localhost:8082/home').end(function(err, res) {
       console.log("Error: " + err);
       expect(res.status).to.equal(200);
       done();

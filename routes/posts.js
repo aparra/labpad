@@ -6,7 +6,7 @@ function PostController(router, db) {
   var posts = new PostRepository(db);
   var sessionHandler = new SessionHandler(db);
 
-  router.get('/', function(req, res, next) {
+  router.get('/home', function(req, res, next) {
     posts.getAllPublisheds().then(function(publicPosts) {
       console.log("public pots: " + publicPosts);
       res.render('posts/list', {'postsByMonth': publicPosts});
@@ -28,7 +28,7 @@ function PostController(router, db) {
       tags: req.body.tags.split(';')
     }).then(function() {
       console.log("redirecting to home");	    
-      res.redirect('/')
+      res.redirect('/home')
     });
   });
 
