@@ -26,7 +26,6 @@ function UserRepository(db) {
 
     var validateLogin = function(error, user) {
       if (user && bcrypt.compareSync(password, user.password)) {
-        console.log(user);
         deferred.resolve(user);
       } else {
         deferred.reject(new Error('Invalid user and/or password'));

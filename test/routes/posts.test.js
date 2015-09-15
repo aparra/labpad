@@ -15,16 +15,14 @@ describe('Route: posts', function() {
     server.shutdown();
   });
 
-  it('should GET the homepage', function(done) {
-    console.log("start homepage test");
-    request.get('http://localhost:8082/home').end(function(err, res) {
-      console.log("Error: " + err);
+  it.skip('should GET the homepage', function(done) {
+    request.get('http://localhost:8082/').end(function(err, res) {
       expect(res.status).to.equal(200);
       done();
     });
   });
 
-/*  it('should show a specific post', function(done) {
+  it('should show a specific post', function(done) {
     request.get('http://localhost:8082/post/post_1').end(function(err, res) {
       expect(res.status).to.equal(200);
       expect(res.text).to.have.string('<h1>Post 1</h1>');
@@ -52,8 +50,8 @@ describe('Route: posts', function() {
       done();
     });
   });  
-*/
-  it('should create a new post', function(done) {
+
+  it.skip('should create a new post', function(done) {
     server.enabledFakeLogin();	  
     request.post('http://localhost:8082/post')
       .send({
@@ -64,14 +62,13 @@ describe('Route: posts', function() {
         tags: "first; hello"
       })
       .end(function(err, res) {
-        console.log("Error " + err);	      
         expect(res.status).to.equal(200);
         expect(res.text).to.have.string('My new post');
         done();
       });
   });
 
-/*  it('should not create a new post when user is not logged', function(done) {
+  it('should not create a new post when user is not logged', function(done) {
     server.mockGet("/user/login", function(req, res, next) {
       res.json({body: "mock login page"});
     });
@@ -90,6 +87,5 @@ describe('Route: posts', function() {
         done();
       });
   });
-*/
 });
 

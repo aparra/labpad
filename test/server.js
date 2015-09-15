@@ -15,9 +15,8 @@ function MockServer() {
       server = app.listen(8082);
 
       db.dropDatabase();
-      new Fixture(db).load().then(function() {
-        console.log("server started and listening on 8082");
-        done();	      
+      new Fixture(db).load().then(function() { 
+        done();
       });
     });
   }

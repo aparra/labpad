@@ -10,7 +10,6 @@ function PostRepository(db) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
-        console.log("insert " + data);	      
         deferred.resolve(data);
       }
     });
@@ -19,20 +18,17 @@ function PostRepository(db) {
   }
 
   this.getAllPublisheds = function() {
-    console.log("call getAllPublisheds");
     var deferred = Q.defer();
 
     posts.aggregate(
       [
-        {"$match": {"published": true}},
-        {"$group": {"_id": {"$dateToString": {"format": "%m/%Y", "date": "$date"}}, "posts": {"$push": "$$ROOT"}}}
+        {$match: {published: true}},
+        {$group: {_id: {$dateToString: {format: "%m/%Y", date: "$date"}}, posts: {$push: "$$ROOT"}}}
       ], 
       function(error, posts) {
         if (error) {
-          console.log("Aggregation error: " + error);
           deferred.reject(new Error(error));
         } else {
-          console.log("Posts" + posts);	  	
           deferred.resolve(posts);
         }
     });
@@ -47,7 +43,6 @@ function PostRepository(db) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
-        console.log(post);
         deferred.resolve(post);
       }
     });
