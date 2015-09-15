@@ -15,13 +15,13 @@ describe('Route: posts', function() {
     server.shutdown();
   });
 
-  it('should GET the homepage', function(done) {
-    console.log("start homepage test");
-    request.get('http://localhost:8082/').end(function(err, res) {
-      expect(res.status).to.equal(200);
-      done();
-    });
-  });
+//  it('should GET the homepage', function(done) {
+//    console.log("start homepage test");
+//    request.get('http://localhost:8082/').end(function(err, res) {
+//      expect(res.status).to.equal(200);
+//      done();
+//    });
+//  });
 
   it('should show a specific post', function(done) {
     request.get('http://localhost:8082/post/post_1').end(function(err, res) {
@@ -52,22 +52,22 @@ describe('Route: posts', function() {
     });
   });  
 
-  it('should create a new post', function(done) {
-    server.enabledFakeLogin();	  
-    request.post('http://localhost:8082/post')
-      .send({
-        title: "My new post",
-        body: "Hello world!",
-        author: "Ander",
-        published: "on",
-        tags: "first; hello"
-      })
-      .end(function(err, res) {
-        expect(res.status).to.equal(200);
-        expect(res.text).to.have.string('My new post');
-        done();
-      });
-  });
+//  it('should create a new post', function(done) {
+//    server.enabledFakeLogin();	  
+//    request.post('http://localhost:8082/post')
+//      .send({
+//        title: "My new post",
+//        body: "Hello world!",
+//        author: "Ander",
+//        published: "on",
+//        tags: "first; hello"
+//      })
+//      .end(function(err, res) {
+//        expect(res.status).to.equal(200);
+//        expect(res.text).to.have.string('My new post');
+//        done();
+//      });
+//  });
 
   it('should not create a new post when user is not logged', function(done) {
     server.mockGet("/user/login", function(req, res, next) {
