@@ -19,18 +19,20 @@ function PostRepository(db) {
   }
 
   this.getAllPublisheds = function() {
+    console.log("call getAllPublisheds");
     var deferred = Q.defer();
 
     posts.aggregate(
       [
-        {$match: {published: true}},
-        {$group: {_id: {$dateToString: {format: "%m/%Y", date: "$date"}}, posts: {"$push": "$$ROOT"}}}
+        {"$match": {"published": true}},
+        {"$group": {"_id": {"$dateToString": {"format": "%m/%Y", "date": "$date"}}, "posts": {"$push": "$$ROOT"}}}
       ], 
       function(error, posts) {
         if (error) {
+          console.log("Aggregation error: " + error);
           deferred.reject(new Error(error));
         } else {
-          console.log(posts);	  	
+          console.log("Posts" + posts);	  	
           deferred.resolve(posts);
         }
     });
