@@ -9,3 +9,6 @@ branches:
 
 services:
   - mongodb
+
+after_success:
+  - npm run coveralls

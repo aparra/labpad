@@ -14,11 +14,15 @@
     "underscore": "~1.8.3"
   },
   "devDependencies": {
+    "chai": "~3.2.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.20",
     "mocha": "~2.2.5",
-    "superagent": "~1.3.0",
-    "chai": "~3.2.0"
+    "mocha-lcov-reporter": "0.0.2",
+    "superagent": "~1.3.0"
   },
   "scripts": {
-    "test": "mocha --recursive --timeout 120000"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/**/*.test.js -- -R spec --timeout 5000",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   }
 }
