@@ -15,7 +15,7 @@ function SessionRepository(db) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
-        deferred.resolve(user);
+        deferred.resolve(sessionId);
       }    
     });
 

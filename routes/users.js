@@ -14,7 +14,8 @@ function UserController(router, db) {
   router.post('/user/login', function(req, res, next) {
     users.login(req.body.email, req.body.password)
       .then(sessions.startSession)
-      .then(function(user) {
+      .then(function(sessionId) {
+        res.cookie('session', sessionId);	      
         res.redirect('/');
       })
       .fail(function(error) {
