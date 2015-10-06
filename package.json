@@ -11,7 +11,9 @@
     "q": "~1.0.0",
     "bcrypt-nodejs": "~0.0.3",
     "glob": "~5.0.14",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "showdown": "~1.2.3",
+    "httpinvoke": "~1.4.0"
   },
   "devDependencies": {
     "chai": "~3.2.0",
