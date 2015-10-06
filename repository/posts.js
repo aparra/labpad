@@ -23,7 +23,10 @@ function PostRepository(db) {
     posts.aggregate(
       [
         {$match: {published: true}},
-        {$group: {_id: {$dateToString: {format: "%m/%Y", date: "$date"}}, posts: {$push: "$$ROOT"}}}
+        {$group: {
+          _id: {$dateToString: {format: "%m/%Y", date: "$date"}},
+          posts: {$push: {title: "$title", tags: "$tags"}}
+        }}
       ], 
       function(error, posts) {
         if (error) {

@@ -56,7 +56,7 @@ describe('Route: posts', function() {
     request.post('http://localhost:8082/post')
       .send({
         title: "My new post",
-        body: "Hello world!",
+        urlMarkdown: "https://raw.githubusercontent.com/aparra/follower_maze/master/README.md",
         author: "Ander",
         published: "on",
         tags: "first; hello"
@@ -76,7 +76,7 @@ describe('Route: posts', function() {
     request.post('http://localhost:8082/post')
       .send({
         title: "My new post",
-        body: "Hello world!",
+        urlMarkdown: "https://raw.githubusercontent.com/aparra/follower_maze/master/README.md",
         author: "Ander",
         published: "on",
         tags: "first; hello"

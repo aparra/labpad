@@ -1,5 +1,7 @@
 var PostRepository = require('../repository/posts'),
-    SessionHandler = require('./sessions');
+    SessionHandler = require('./sessions'),
+    httpinvoke = require('httpinvoke'),
+    showdown = require('showdown');
 
 function PostController(router, db) {
 
@@ -17,20 +19,26 @@ function PostController(router, db) {
   });
 
   router.post('/post', sessionHandler.checkAuth, function(req, res, next) {
-    posts.create({
-      title: req.body.title,
-      body: req.body.body,
-      author: req.body.author,
-      date: new Date(),
-      published: req.body.published === 'on',
-      tags: req.body.tags.split(';')
+    httpinvoke(req.body.urlMarkdown, 'GET').then(function(res) {
+      return posts.create({
+        title: req.body.title,
+        body: res.body,
+        author: req.body.author,
+        date: new Date(),
+        published: req.body.published === 'on',
+        tags: req.body.tags.split(';')
+      });
     }).then(function() {
-      res.redirect('/')
+      res.redirect('/');
     });
   });
 
   router.get('/post/:title', function(req, res, next) {
     posts.getByTitle(req.params.title.replace(/_/g, ' ')).then(function(post) {
+      var converter = new showdown.Converter();
+      post.parsedBody = converter.makeHtml(post.body);
+      return post;
+    }).then(function(post) {
       res.render('posts/show', {'post': post});
     });
   });
