@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div.container
+      div.columns
+        div.profile
+          img.avatar(src='https://avatars2.githubusercontent.com/u/259656?v=3&amp;s=460', height='230', width='230')
+          h1.fullname #{user.name}
+          ul.details
+            li
+              span.icon: img(src="/images/working.png")
+              |#{user.company}
+            li
+              span.icon: img(src="/images/home.png")
+              |#{user.location}
+            li
+              span.icon: img(src="/images/megaphone.png")
+              |#{user._id}
+        div.content
+          section.about
+            p Hi there! These are my notes about my experiments, research and tests. Enjoy and leave a comment!
+            ul.quotes 
+              li "Simplicity is the ultimate sophistication."
+              li &#8212; Leonardo da Vinci
+          block content
