@@ -1,13 +1,28 @@
 extends ../layout
 
 block content
-  section.new-post
+  section.new-user
     h1 Create a new user
 
-    form(name="new-user", method="post")
+    form(name="new-user", action="/user", method="post")
+      div.input
+        label(for="name") Name
+        input(type="text", name="name")
+      div.input
+        label(for="urlAvatar") URL avatar
+        input(type="text", name="urlAvatar")       
+      div.input
+        label(for="location") Location
+        input(type="text", name="location")
+      div.input
+        label(for="company") Company
+        input(type="text", name="company")
       div.input
         label(for="email") Email
         input(type="email", name="email")
+      div.input.checkbox
+        label(for="principal") Principal?
+        input(type="checkbox", name="principal")
       div.input
         label(for="password") Password
         input(type="password", name="password")

@@ -9,8 +9,9 @@ function UserRepository(db) {
 
     var salt = bcrypt.genSaltSync();
     var password_hash = bcrypt.hashSync(user.password, salt);
+    user.password = password_hash;
 
-    users.insert({'_id': user.email, 'password': password_hash}, function(error, data) {
+    users.insert(user, function(error, data) {
       if (error) {
         deferred.reject(new Error(error));
       } else {
@@ -33,6 +34,20 @@ function UserRepository(db) {
     }
 
     users.findOne({'_id': email}, validateLogin);
+    return deferred.promise;
+  }
+
+  this.getPrincipal = function() {
+    var deferred = Q.defer();
+
+    users.findOne({principal: true}, function(error, user) {
+      if (error) {
+        deferred.reject(new Error(error));
+      } else {
+        deferred.resolve(user);
+      }
+    });
+
     return deferred.promise;
   }
 }

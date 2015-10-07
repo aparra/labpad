@@ -4,7 +4,7 @@ block content
   section.new-post
     h1 Create a new post
 
-    form(name="new-post", method="post")
+    form(name="new-post", action="/post", method="post")
       div.input
         label(for="title") Title
         input(type="text", name="title")

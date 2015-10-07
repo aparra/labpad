@@ -1,8 +1,8 @@
-extends ../layout
+extends ../layout_index
 
 block content
   - var urlFor = function(title) {  
-  -   return /post/ + title.replace(/\s+/g, '_').toLowerCase();
+  -   return '/post/' + title.replace(/\s+/g, '_').toLowerCase();
   - }
 
   section.index

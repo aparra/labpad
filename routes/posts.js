@@ -1,16 +1,19 @@
 var PostRepository = require('../repository/posts'),
+    UserRepository = require('../repository/users'),
     SessionHandler = require('./sessions'),
     httpinvoke = require('httpinvoke'),
-    showdown = require('showdown');
+    showdown = require('showdown'),
+    Q = require('q');
 
 function PostController(router, db) {
 
   var posts = new PostRepository(db);
+  var users = new UserRepository(db);
   var sessionHandler = new SessionHandler(db);
 
   router.get('/', function(req, res, next) {
-    posts.getAllPublisheds().then(function(publicPosts) {
-      res.render('posts/list', {'postsByMonth': publicPosts});
+    Q.all([users.getPrincipal(), posts.getAllPublisheds()]).spread(function(principalUser, publicPosts) {
+      res.render('posts/list', {'user': principalUser, 'postsByMonth': publicPosts});
     });
   });
 

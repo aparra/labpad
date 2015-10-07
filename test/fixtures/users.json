@@ -1,6 +1,11 @@
 [
   {
     "_id": "user@fakemail.com",
-    "password": "$2a$10$SqIF0VoNUvj//ECIhW69YO1Z315SF8emnKt4ColD63.gojpnsuiBG"  
+    "name": "User Fake",
+    "urlAvatar": "https://avatars2.githubusercontent.com/u/259656?v=3&amp;s=460", 
+    "location": "Wardrobe, Narnia",
+    "company": "Ericsson",
+    "principal": true,
+    "password" : "$2a$10$gvVgm5rjfRHJY6YCJx8DouI051.fy9z395pwqV3t2y7LmJTuGU2ki"
   }
 ]

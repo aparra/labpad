@@ -54,7 +54,15 @@ function UserController(router, db) {
     var deferred = Q.defer();
 
     if (_.isEmpty(error)) {
-       deferred.resolve(user);
+      deferred.resolve({
+        _id: user.email,
+        name: user.name,
+        urlAvatar: user.urlAvatar,
+        location: user.location,
+        company: user.company,
+        principal: user.principal === 'on',
+        password: user.password
+      });
     } else {
        deferred.reject(error);
     }
