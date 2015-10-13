@@ -1,7 +1,29 @@
 extends ../layout
 
 block content
+  - var urlFor = function(title) {  
+  -   return '/post/' + title.replace(/\s+/g, '_').toLowerCase() + '/comment';
+  - }
+
   article
     header
       h1 #{post.title}
       div#post !{post.parsedBody}
+  div.comments
+    h3 Comments
+    ul
+      each comment in post.comments
+        li
+          span= comment.author
+          p= comment.message
+    div.new-comment
+      h3 New comment
+      form(name="new-comment", action="#{urlFor(post.title)}", method="post")
+        div.input
+          label(for="author") Name
+          input(type="text", name="author")
+        div.input
+          label(for="message") Message
+          textarea(name="message", cols="70", rows="6")
+        div
+          input(type="submit", value="Add", class="button orange") 

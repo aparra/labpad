@@ -87,5 +87,20 @@ describe('Route: posts', function() {
         done();
       });
   });
+
+  it('should add a new comment', function(done) {
+    request.post('http://localhost:8082/post/post_1/comment')
+      .send({
+        author: "Leonardo da Vinci",
+        message: "Simplicity is the ultimate sophistication"
+      })
+      .end(function(err, res) {
+        expect(res.status).to.equal(200);
+	console.log(res.text);
+        expect(res.text).to.have.string('Leonardo da Vinci');
+        expect(res.text).to.have.string('Simplicity is the ultimate sophistication');
+        done();
+      });
+  });
 });
 

@@ -52,6 +52,20 @@ function PostRepository(db) {
 
     return deferred.promise;
   }
+
+  this.addComment = function(title, comment) {
+    var deferred = Q.defer();    
+    
+    posts.update({title: {$regex: new RegExp(title, 'i')}}, {$push: {comments: comment}}, function(error) {
+      if (error) {
+        deferred.reject(new Error(error));
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  }
 }
 
 module.exports = PostRepository;

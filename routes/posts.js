@@ -29,7 +29,8 @@ function PostController(router, db) {
         author: req.body.author,
         date: new Date(),
         published: req.body.published === 'on',
-        tags: req.body.tags.split(';')
+        tags: req.body.tags.split(';'),
+        comments: []
       });
     }).then(function() {
       res.redirect('/');
@@ -43,6 +44,15 @@ function PostController(router, db) {
       return post;
     }).then(function(post) {
       res.render('posts/show', {'post': post});
+    });
+  });
+
+  router.post("/post/:title/comment", function(req, res, next) {
+    var title = req.params.title;
+    var comment = {author: req.body.author, message: req.body.message};
+
+    posts.addComment(title.replace(/_/g, ' '), comment).then(function() {
+      res.redirect('/post/' + title);  
     });
   });
 }
